@@ -6,6 +6,8 @@ using TaskManager.Domain.Jobs;
 using TaskManager.Domain.TaskDomain;
 using TaskManager.Domain.TaskRequests;
 
+using TaskManagerWeb.Handlers;
+
 namespace TaskManager;
 
 public class Program
@@ -39,6 +41,8 @@ public class Program
             app.UseSwagger();
             app.UseSwaggerUI();
         }
+
+        app.UseMiddleware<ExceptionHandlingMiddleware>();
 
         app.UseHttpsRedirection();
 
