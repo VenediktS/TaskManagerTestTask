@@ -18,11 +18,21 @@ namespace TaskManager.Domain.TaskRequests
 			_logger = logger;
 		}
 
-		protected async Task Save(TaskEntity entity, CancellationToken cancellationToken)
+		protected async Task Add(TaskEntity entity, CancellationToken cancellationToken)
 		{
             await _dbContext.Tasks.AddAsync(entity, cancellationToken);
 
 			await CheckForNeedStatusChange(entity, cancellationToken);
+
+            await _dbContext.SaveChangesAsync(cancellationToken);
+        }
+
+
+		protected async Task Update(TaskEntity entity, CancellationToken cancellationToken) 
+		{
+             _dbContext.Tasks.Update(entity);
+
+            await CheckForNeedStatusChange(entity, cancellationToken);
 
             await _dbContext.SaveChangesAsync(cancellationToken);
         }
@@ -45,7 +55,7 @@ namespace TaskManager.Domain.TaskRequests
 			{
 				TaskId = entity.Id,
 				StatusTo = (TaskStatusesEnum)nextStatus,
-				CreatedAt = DateTimeOffset.Now,
+				CreatedAt = DateTime.Now,
 			};
 
 			_dbContext.TaskStatusForChangeEntities.Add(newTaskStatusChange);

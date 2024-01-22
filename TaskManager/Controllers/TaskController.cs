@@ -24,7 +24,7 @@ namespace TaskManagerWeb.Controllers
 			return Accepted(entityId);
 		}
 
-		[HttpGet]
+		[HttpGet("{id}")]
 		public async Task<ActionResult<GetTaskDTO>> GetTask([FromRoute]Guid id, CancellationToken cancellationToken)
 		{
 			var entity = await _mediator.Send(new GetTaskRequest(id), cancellationToken);

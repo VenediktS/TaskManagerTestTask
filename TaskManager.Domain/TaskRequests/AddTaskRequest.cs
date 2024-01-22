@@ -23,13 +23,12 @@ namespace TaskManager.Domain.TaskRequests
 				var entity = new TaskEntity()
 				{
 					Status = TaskStatusesEnum.Created,
-					StatusSetAt = DateTimeOffset.Now,
-					UpdateAt = DateTimeOffset.Now,
-					CreatedAt = DateTimeOffset.Now
+					StatusSetAt = DateTime.Now,
+					UpdateAt = DateTime.Now,
+					CreatedAt = DateTime.Now
 				};
 
-				await _dbContext.Tasks.AddAsync(entity, cancellationToken);
-				await _dbContext.SaveChangesAsync(cancellationToken);
+				await Add(entity, cancellationToken);
 
 				return entity.Id;
             }

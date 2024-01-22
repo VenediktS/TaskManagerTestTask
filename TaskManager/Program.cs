@@ -2,6 +2,7 @@
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using TaskManager.DB;
+using TaskManager.Domain.Jobs;
 using TaskManager.Domain.TaskDomain;
 using TaskManager.Domain.TaskRequests;
 
@@ -12,7 +13,7 @@ public class Program
     public static void Main(string[] args)
     {
         var builder = WebApplication.CreateBuilder(args);
-
+        AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
         // Add services to the container.
         builder.Services.AddMediatR(cfg => {
             cfg.RegisterServicesFromAssembly(typeof(AddTaskRequest).Assembly);
@@ -28,6 +29,7 @@ public class Program
             options.UseNpgsql(builder.Configuration.GetConnectionString("LocalDbConnection"));
         });
 
+       builder.Services.AddHostedService<TaskStatusUpdateJob>();
 
         var app = builder.Build();
 

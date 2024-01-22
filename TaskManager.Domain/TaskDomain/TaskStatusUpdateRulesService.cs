@@ -40,7 +40,7 @@ namespace TaskManager.Domain.TaskDomain
 
         private static bool OnRunningRule(TaskEntity entity)
 		{
-            if (DateTimeOffset.Now >= entity.StatusSetAt.AddMinutes(2))
+            if (DateTime.Now >= entity.StatusSetAt.AddMinutes(2))
             {
                 return true;
             }

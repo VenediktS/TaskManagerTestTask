@@ -6,10 +6,10 @@ namespace TaskManager.Common.Entities
 	{
 		public Guid Id { get; set; }
 		public required TaskStatusesEnum Status { get; set; }
-		public DateTimeOffset StatusSetAt { get; set; }
+		public DateTime StatusSetAt { get; set; }
 
-		public DateTimeOffset UpdateAt { get; set; }
-		public DateTimeOffset CreatedAt { get; set; }
+		public DateTime UpdateAt { get; set; }
+		public DateTime CreatedAt { get; set; }
     }
 }
 

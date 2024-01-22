@@ -33,11 +33,10 @@ namespace TaskManager.Domain.TaskRequests
                 }
 
                 entity.Status = request._model.Status;
-                entity.StatusSetAt = DateTimeOffset.Now;
-                entity.UpdateAt = DateTimeOffset.Now;
+                entity.StatusSetAt = DateTime.Now;
+                entity.UpdateAt = DateTime.Now;
 
-                _dbContext.Update(entity);
-                await _dbContext.SaveChangesAsync(cancellationToken);
+                await Update(entity, cancellationToken);
             }
         }
     }
