@@ -17,7 +17,9 @@ namespace TaskManagerWeb.Controllers
 		}
 
 		[HttpPost]
-		public async Task<ActionResult<Guid>> AddTask(CancellationToken cancellationToken)
+        [ProducesResponseType(StatusCodes.Status202Accepted)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<Guid>> AddTask(CancellationToken cancellationToken)
 		{
 			var entityId = await _mediator.Send(new AddTaskRequest(), cancellationToken);
 
@@ -25,7 +27,9 @@ namespace TaskManagerWeb.Controllers
 		}
 
 		[HttpGet("{id}")]
-		public async Task<ActionResult<GetTaskDTO>> GetTask([FromRoute]Guid id, CancellationToken cancellationToken)
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<ActionResult<GetTaskDTO>> GetTask([FromRoute]Guid id, CancellationToken cancellationToken)
 		{
 			var entity = await _mediator.Send(new GetTaskRequest(id), cancellationToken);
 
