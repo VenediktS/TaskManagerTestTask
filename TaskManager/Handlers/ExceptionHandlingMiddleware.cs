@@ -28,9 +28,7 @@ namespace TaskManagerWeb.Handlers
 
         private async Task HandleExceptionAsync(HttpContext context, Exception exception)
         {
-            _logger.LogError(exception, "An unexpected error occurred.");
-
-            //More log stuff        
+            _logger.LogError(exception, "An unexpected error occurred.");      
 
             ExceptionResponse response = exception switch
             {
