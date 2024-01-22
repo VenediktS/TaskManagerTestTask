@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="TaskRequests\" />
+    <None Remove="Jobs\" />
+    <None Remove="TaskDomain\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="TaskRequests\" />
+    <Folder Include="Jobs\" />
+    <Folder Include="TaskDomain\" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="MediatR" Version="12.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Hosting" Version="2.2.7" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TaskManager.Common\TaskManager.Common.csproj" />
+    <ProjectReference Include="..\TaskManager.DB\TaskManager.DB.csproj" />
+  </ItemGroup>
+</Project>
