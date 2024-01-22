@@ -42,7 +42,7 @@ namespace TaskManager.Domain.Jobs
                     var context = scope.ServiceProvider.GetRequiredService<TaskManagerDbContext>();
 
                     var statusForChange = await context.TaskStatusForChangeEntities
-                        .OrderByDescending(el => el.CreatedAt)
+                        .OrderBy(el => el.CreatedAt)
                         .Include(el => el.Task)
                         .ToListAsync();
 
